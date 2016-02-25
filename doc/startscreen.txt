@@ -2,8 +2,8 @@
 
 ==============================================================================
 INTRODUCTION                                                  *startscreen*
+
 Customize Vim's start screen.
-    http://code.arp242.net/startscreen.vim
 
 This is a much simpler version of vim-startify (which has a lot more
 features): https://github.com/mhinz/vim-startify
@@ -15,18 +15,23 @@ so you may get errors if you don't have it installed.
 ==============================================================================
 OPTIONS                                               *startscreen-options*
 
-*g:Startscreen_function*                (Funcref, default: `startscreen#fortune`)
+*g:Startscreen_function*             (Funcref, default: `startscreen#fortune`)
+
 The function to run; this expects a |Funcref|. Note the capital S!
 
 Example:
 >
-	function! T()
-		read ~/TODO
-		%>>
-		:1
-		nnoremap <buffer> <Return> :enew<CR>:call Start()<CR>
-	endfun
-	let g:Startscreen_function = function('T')
+        function! T()
+                " Read on our TODO file
+                read ~/TODO
+
+                " Some margin for readability
+                :silent %>>
+
+                " Go to line 1
+                :1
+        endfun
+        let g:Startscreen_function = function('T')
 <
 
 vim:tw=78:ts=8:ft=help:norl:expandtab

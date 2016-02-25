@@ -20,12 +20,12 @@ set cpo&vim
 " The default function; show a fortune
 fun! startscreen#fortune()
 	.!fortune -a
-	%>>
+	silent %>>
 	call append('0', "") | call append('0', "")
 	:1
 
 	" Moar fortunes! :-)
-	nnoremap <buffer> <Return> :enew<CR>:call startscreen#start()<CR>
+	nnoremap <buffer> <silent> <Return> :enew<CR>:call startscreen#start()<CR>
 endfun
 
 if !exists('g:Startscreen_function')
