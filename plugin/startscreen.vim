@@ -19,10 +19,12 @@ set cpo&vim
 
 " The default function; show a fortune
 fun! startscreen#fortune()
-	.!fortune -a
-	silent %>>
-	call append('0', "") | call append('0', "")
+	let l:fortune = systemlist('fortune -a')
+	".!fortune -a
+	"silent %>>
+	call append('0', ['', ''] + map(l:fortune, '"        " . v:val'))
 	:1
+	redraw!
 
 	" Moar fortunes! :-)
 	nnoremap <buffer> <silent> <Return> :enew<CR>:call startscreen#start()<CR>
