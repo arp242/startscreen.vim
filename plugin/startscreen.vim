@@ -20,8 +20,6 @@ set cpo&vim
 " The default function; show a fortune
 fun! startscreen#fortune()
 	let l:fortune = systemlist('fortune -a')
-	".!fortune -a
-	"silent %>>
 	call append('0', ['', ''] + map(l:fortune, '"        " . v:val'))
 	:1
 	redraw!
@@ -37,16 +35,19 @@ endif
 
 " Set a fancy start screen
 fun! startscreen#start()
-	" Don't run if: we have commandline arguments, we don't have an empty
-	" buffer, if we've not invoked as vim or gvim, or if we'e start in insert mode
+	" Don't run if:
+	" - there are commandline arguments;
+	" - the buffer isn't empty (e.g. cmd | vi -);
+	" - we're not invoked as vim or gvim;
+	" - we're starting in insert mode.
 	if argc() || line2byte('$') != -1 || v:progname !~? '^[-gmnq]\=vim\=x\=\%[\.exe]$' || &insertmode
 		return
 	endif
 
-	" Start a new buffer ...
+	" Start a new buffer...
 	enew
 
-	" ... and set some options for it
+	" ...and set some options for it
 	setlocal
 		\ bufhidden=wipe
 		\ buftype=nofile
@@ -70,6 +71,8 @@ fun! startscreen#start()
 	nnoremap <buffer><silent> o :enew <bar> startinsert<CR><CR>
 	nnoremap <buffer><silent> p :enew<CR>p
 	nnoremap <buffer><silent> P :enew<CR>P
+	" TODO: Map more keys. e.g. I often start Vim to paste something from the OS
+	" clipboard (<Leader>p), but I have to clear this startscreen first :-/
 endfun
 
 

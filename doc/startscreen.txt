@@ -17,7 +17,8 @@ OPTIONS                                               *startscreen-options*
 
 *g:Startscreen_function*             (Funcref, default: `startscreen#fortune`)
 
-The function to run; this expects a |Funcref|. Note the capital S!
+The function to run; this expects a |Funcref|. Note the capital S (which is
+required by Vim)!
 
 Example:
 >
